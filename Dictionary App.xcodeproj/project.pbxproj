@@ -16,6 +16,9 @@
 		DE3D2EA5281054E9009F5EE4 /* Dictionary_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D2EA4281054E9009F5EE4 /* Dictionary_AppTests.swift */; };
 		DE3D2EAF281054E9009F5EE4 /* Dictionary_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D2EAE281054E9009F5EE4 /* Dictionary_AppUITests.swift */; };
 		DE3D2EB1281054E9009F5EE4 /* Dictionary_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D2EB0281054E9009F5EE4 /* Dictionary_AppUITestsLaunchTests.swift */; };
+		DE3D2EBE281055E5009F5EE4 /* KelimeHucreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D2EBD281055E5009F5EE4 /* KelimeHucreTableViewCell.swift */; };
+		DE3D2EC02810569B009F5EE4 /* KelimeDetayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D2EBF2810569B009F5EE4 /* KelimeDetayViewController.swift */; };
+		DE3D2EC228105747009F5EE4 /* Kelimeler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3D2EC128105747009F5EE4 /* Kelimeler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		DE3D2EAA281054E9009F5EE4 /* Dictionary AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dictionary AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE3D2EAE281054E9009F5EE4 /* Dictionary_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary_AppUITests.swift; sourceTree = "<group>"; };
 		DE3D2EB0281054E9009F5EE4 /* Dictionary_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DE3D2EBD281055E5009F5EE4 /* KelimeHucreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelimeHucreTableViewCell.swift; sourceTree = "<group>"; };
+		DE3D2EBF2810569B009F5EE4 /* KelimeDetayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelimeDetayViewController.swift; sourceTree = "<group>"; };
+		DE3D2EC128105747009F5EE4 /* Kelimeler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kelimeler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +105,12 @@
 		DE3D2E8C281054E7009F5EE4 /* Dictionary App */ = {
 			isa = PBXGroup;
 			children = (
+				DE3D2EC128105747009F5EE4 /* Kelimeler.swift */,
 				DE3D2E8D281054E7009F5EE4 /* AppDelegate.swift */,
 				DE3D2E8F281054E7009F5EE4 /* SceneDelegate.swift */,
 				DE3D2E91281054E7009F5EE4 /* ViewController.swift */,
+				DE3D2EBF2810569B009F5EE4 /* KelimeDetayViewController.swift */,
+				DE3D2EBD281055E5009F5EE4 /* KelimeHucreTableViewCell.swift */,
 				DE3D2E93281054E7009F5EE4 /* Main.storyboard */,
 				DE3D2E96281054E9009F5EE4 /* Assets.xcassets */,
 				DE3D2E98281054E9009F5EE4 /* LaunchScreen.storyboard */,
@@ -258,8 +267,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE3D2EC228105747009F5EE4 /* Kelimeler.swift in Sources */,
 				DE3D2E92281054E7009F5EE4 /* ViewController.swift in Sources */,
+				DE3D2EC02810569B009F5EE4 /* KelimeDetayViewController.swift in Sources */,
 				DE3D2E8E281054E7009F5EE4 /* AppDelegate.swift in Sources */,
+				DE3D2EBE281055E5009F5EE4 /* KelimeHucreTableViewCell.swift in Sources */,
 				DE3D2E90281054E7009F5EE4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
