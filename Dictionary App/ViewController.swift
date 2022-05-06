@@ -6,31 +6,94 @@
 //
 
 import UIKit
-
+import Firebase
 class ViewController: UIViewController {
     @IBOutlet weak var kelimeTableView: UITableView!
     
     var kelimeListesi = [Kelimeler]()
     
+    var ref:DatabaseReference!
+    
+    
     @IBOutlet weak var searchBar: UISearchBar!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let k1 = Kelimeler(kelime_id: 1, ingilizce: "Table", turkce: "Masa")
-        let k2 = Kelimeler(kelime_id: 2, ingilizce: "Door", turkce: "Kapı")
-        let k3 = Kelimeler(kelime_id: 3, ingilizce: "Window", turkce: "Pencere")
-
-        kelimeListesi.append(k1)
-        kelimeListesi.append(k2)
-        kelimeListesi.append(k3)
+        
         
         kelimeTableView.delegate = self
         kelimeTableView.dataSource = self
         searchBar.delegate = self
+        
+        ref = Database.database().reference()
+        
+        tumKelimelerAl()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let indeks = sender as? Int
         
+        let gidilecekVC = segue.destination as! KelimeDetayViewController
+        
+        gidilecekVC.kelime = kelimeListesi[indeks!]
+    }
+    
+    func tumKelimelerAl(){
+        
+        ref.child("kelimeler").observe(.value, with: { snapshot in
+            
+            if let gelenVeriButunu = snapshot.value as? [String:AnyObject] {
+                
+                self.kelimeListesi.removeAll()
+                
+                for gelenSatirVerisi in gelenVeriButunu {
+                    if let sozluk = gelenSatirVerisi.value as? NSDictionary {
+                        let key = gelenSatirVerisi.key
+                        let turkce = sozluk["turkce"] as? String ?? ""
+                        let ingilizce = sozluk["ingilizce"] as? String ?? ""
+                        
+                        let kelime = Kelimeler(kelime_id: key, ingilizce: ingilizce, turkce: turkce)
+                        self.kelimeListesi.append(kelime)
+                        
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.kelimeTableView.reloadData()
+                }
+            }
+            
+        })
+    }
+    
+    func aramaYap(aramaKelimesi:String){
+        
+        ref.child("kelimeler").observe(.value, with: { snapshot in
+            
+            if let gelenVeriButunu = snapshot.value as? [String:AnyObject] {
+                
+                self.kelimeListesi.removeAll()
+                
+                for gelenSatirVerisi in gelenVeriButunu {
+                    if let sozluk = gelenSatirVerisi.value as? NSDictionary {
+                        let key = gelenSatirVerisi.key
+                        let turkce = sozluk["turkce"] as? String ?? ""
+                        let ingilizce = sozluk["ingilizce"] as? String ?? ""
+                        
+                        
+                        if ingilizce.contains(aramaKelimesi){
+                            let kelime = Kelimeler(kelime_id: key, ingilizce: ingilizce, turkce: turkce)
+                            self.kelimeListesi.append(kelime)
+                        }
+
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.kelimeTableView.reloadData()
+                }
+            }
+            
+        })
     }
 
 
@@ -71,6 +134,15 @@ extension ViewController:UITableViewDelegate, UITableViewDataSource {
 extension ViewController:UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+       
         print("Arama Sonucu : \(searchText)")
+        
+        if searchText == "" {
+            tumKelimelerAl()
+        }
+        else{
+            aramaYap(aramaKelimesi: searchText.lowercased())
+        }
+        
     }
 }
